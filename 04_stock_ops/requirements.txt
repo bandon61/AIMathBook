@@ -1,0 +1,5 @@
+# 04_stock_ops 専用（本体 requirements.txt は学習本用のため分離）
+yfinance>=0.2.40
+pandas>=2.0
+PyYAML>=6.0
+numpy>=1.24

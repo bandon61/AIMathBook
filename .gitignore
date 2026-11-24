@@ -81,8 +81,17 @@ celerybeat-schedule
 
 # dotenv
 .env
+.env.*
+!.env.example
+
+# stock ops outputs
+04_stock_ops/output/
 
 # virtualenv
+# node / frontend
+node_modules/
+.next/
+dist/
 .venv
 venv/
 ENV/
