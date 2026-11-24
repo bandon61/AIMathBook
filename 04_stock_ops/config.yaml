@@ -1,0 +1,39 @@
+# 監視対象銘柄（Yahoo Finance ティッカー）
+# 日本株は末尾に .T を付ける（例: 7203.T = トヨタ）
+tickers:
+  - 7203.T   # トヨタ
+  - 6758.T   # ソニー
+  - 9984.T   # ソフトバンクG
+  - 8306.T   # 三菱UFJ
+  - 6501.T   # 日立
+  - AAPL
+  - MSFT
+  - ^N225    # 日経平均（参考用）
+
+# 取得期間（スクリーニング・異常検知の両方で使用）
+lookback_days: 120
+
+# --- A: 日次スクリーニング条件 ---
+screen:
+  # 終値が短期MAを上回り、かつ短期MAが長期MAを上回る
+  ma_short: 5
+  ma_long: 25
+  # 出来高が直近平均の何倍以上か
+  volume_ma_days: 20
+  volume_min_ratio: 1.2
+  # 直近N日のリターン下限（%）
+  min_return_pct: 0.0
+
+# --- C: 異常検知しきい値 ---
+anomaly:
+  # 1日リターンの絶対値がこの%以上なら急騰/急落
+  price_change_pct: 3.0
+  # 出来高が直近平均の何倍以上ならスパイク
+  volume_spike_ratio: 2.5
+  volume_ma_days: 20
+  # 終値が直近N日平均±何σを超えたら統計的異常
+  zscore_window: 20
+  zscore_threshold: 2.5
+
+# 出力先
+output_dir: output
